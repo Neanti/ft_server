@@ -37,3 +37,8 @@ RUN chmod 755 -R /var/www/html/wordpress
 COPY wp /var/lib/mysql
 COPY config.inc.php /var/www/html/phpmyadmin/
 RUN service mysql start && mysql -u root -e "CREATE USER 'user'@'localhost' IDENTIFIED BY 'password'" && mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'user'@'localhost' IDENTIFIED BY 'password'" && mysql -u root -e "FLUSH PRIVILEGES"
+COPY nginx-selfsigned.key /etc/ssl/private/
+COPY nginx-selfsigned.crt /etc/ssl/certs/
+COPY self-signed.conf /etc/nginx/snippets/
+COPY ssl-params.conf /etc/nginx/snippets/
+COPY dhparam.pem /etc/ssl/certs/

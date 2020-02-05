@@ -1,5 +1,6 @@
 creer fichier config et cp dans config
 service nginx mysql php7.3-fpm start
+## mysql et wordpress pour user et wp
 log into MYSQL as root
     mysql -u root
 Grant privileges. To a new user execute:
@@ -8,3 +9,17 @@ Grant privileges. To a new user execute:
       FLUSH PRIVILEGES;
 default = /etc/nginx/sites-enabled lien php nginx
 php.ini = /etc/php/7.3/fpm/php.ini cgi.fix path = 0;
+WORDPRESS
+	mysql -u root
+	CREATE DATABASE wordpress;
+	GRANT ALL PRIVILEGES ON wordpress.* TO 'user'@'localhost';
+	FLUSH PRIVILEGES;
+	EXIT;
+	cd /tmp/
+	wget -c http://wordpress.org/latest.tar.gz
+	tar -xvzf latest.tar.gz
+	mv wordpress /var/www/html
+	cp wp-config-sample.php dans /var/www/html/wordpress/
+	chown -R www-data:www-data /var/www/html/wordpress/
+	chmod 755 -R /var/www/html/wordpress/
+	restat nginx

@@ -12,21 +12,23 @@
 # This file will automatically load configuration files provided by other
 # applications, such as Drupal or Wordpress. These applications will be made
 # available underneath a path with that package name, such as /drupal8.
-#
+#ewq
 # Please see /usr/share/doc/nginx-doc/examples/ for more detailed examples.
 ##
 
 # Default server configuration
 #
 server {
-	listen 80 default_server;
-	listen [::]:80 default_server;
+	#listen 80 default_server;
+	#listen [::]:80 default_server;
 
 	# SSL configuration
 	#
-	# listen 443 ssl default_server;
-	# listen [::]:443 ssl default_server;
-	#
+	listen 443 ssl default_server;
+	listen [::]:443 ssl default_server;
+	include snippets/self-signed.conf;
+	include snippets/ssl-params.conf;
+	
 	# Note: You should disable gzip for SSL traffic.
 	# See: https://bugs.debian.org/773332
 	#
@@ -46,6 +48,7 @@ server {
 	server_name localhost;
 
 	location / {
+		 autoindex on;
 		# First attempt to serve request as file, then
 		# as directory, then fall back to displaying a 404.
 		try_files $uri $uri/ =404;
@@ -79,6 +82,13 @@ location ~ \.php$ {
 	#}
 }
 
+server {
+       listen 80;
+       listen [::]:80;
+
+       server_name localhost;
+       return 302 https://$server_name$request_uri;
+      }
 
 # Virtual Host configuration for example.com
 #

@@ -23,3 +23,9 @@ WORDPRESS
 	chown -R www-data:www-data /var/www/html/wordpress/
 	chmod 755 -R /var/www/html/wordpress/
 	restat nginx
+SSL HTTPS
+nginxself.....key = /etc/ssl/private/
+nginxself>>>>>.crt = /etc/ssl/certs/
+self-signed.conf = /etc/nginx/snippets/self-signed.conf
+ssl-params.conf = /etc/nginx/snippets/
+dhparam.pem = /etc/ssl/certs/
