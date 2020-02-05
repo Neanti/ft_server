@@ -14,7 +14,7 @@ RUN apt-get install -y default-mysql-server
 RUN apt-get install -y php
 RUN apt-get install -y php7.3-fpm php7.3-gd php7.3-mysql php7.3-curl php7.3-imap php7.3-mbstring php7.3-xml
 RUN apt-get install -y wget
-RUN wget https://files.phpmyadmin.net./phpMyAdmin/5.0.1/phpMyAdmin-5.0.1-english.tar.gz
+COPY phpMyAdmin-5.0.1-english.tar.gz /
 RUN mkdir /var/www/html/phpmyadmin
 RUN tar xzf phpMyAdmin-5.0.1-english.tar.gz --strip-components=1 -C /var/www/html/phpmyadmin
 RUN apt-get install -y emacs
@@ -25,7 +25,7 @@ RUN rm -rf /etc/nginx/sites-enabled/default
 COPY default /etc/nginx/sites-enabled/
 RUN rm -rf /etc/php/7.3/fpm/php.ini
 COPY php.ini /etc/php/7.3/fpm/
-RUN wget -c http://wordpress.org/latest.tar.gz
+COPY latest.tar.gz /
 RUN tar -xvzf latest.tar.gz
 RUN mv wordpress /var/www/html/
 RUN rm -rf /var/www/html/wordpress/wp-config-sample.php
