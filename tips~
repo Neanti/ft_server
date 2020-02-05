@@ -1,0 +1,10 @@
+creer fichier config et cp dans config
+service nginx mysql php7.3-fpm start
+log into MYSQL as root
+    mysql -u root
+Grant privileges. To a new user execute:
+      CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
+      GRANT ALL PRIVILEGES ON *.* TO 'newuser'@'localhost';
+      FLUSH PRIVILEGES;
+default = /etc/nginx/sites-enabled lien php nginx
+php.ini = /etc/php/7.3/fpm/php.ini cgi.fix path = 0;
